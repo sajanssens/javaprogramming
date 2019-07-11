@@ -1,4 +1,4 @@
-package com.example.elaboration;
+package com.example.elaboration.generics;
 
 import java.util.ArrayList;
 import java.util.List;

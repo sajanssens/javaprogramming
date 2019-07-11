@@ -1,4 +1,4 @@
-package com.example.generics;
+package com.example.elaboration.generics;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,18 +7,21 @@ public class Main {
     public static void main(String[] args) {
         Main m = new Main();
 
-        // BASICS: usage -------------------
+        // BASICS -------------------
+        //      Arrays
         Object[] objectArray = new Integer[3];
         objectArray[0] = 1;
         objectArray[1] = "2"; // allowed: no compile time check... but runtimeexception...! :-(
         Object o = objectArray[0]; // type unknown... casting required :-(
 
+        //      Collections not generic
         List objectList = new ArrayList();
         objectList.add(1);
         objectList.add("2"); // allowed: li would contain a String instead of Integer; no runtimeexception...
         Object o1 = objectList.get(0); // type unknown... casting required :-(
         Object o2 = objectList.get(1);
 
+        //      Collections generic
         List<Integer> intList = new ArrayList<>();
         intList.add(1);
         // intList.add("2"); // not allowed :-) : li would contain a String instead of Integer
@@ -30,37 +33,47 @@ public class Main {
         // Allowed:
         List<Number> numbers = new ArrayList<Number>(); // left and right of = should be equal; use diamond.
 
-        // Type parameter on class with bounds -------------------
+        // Type parameters -------------------
+        //      On class with bounds
 
         // Allowed
         Data<Integer> integerData = new Data<Integer>(); // left and right of = are equal and Integer is-a Number
         Data<Float> floatData = new Data<>(); // Float is-a Number; diamond used: types are equal by definition
 
         // Not allowed
-        // Data<Number> di  = new Data<Integer>(); // though Integer is-a Number left and T right of = should be equal
+        // Data<Number> di  = new Data<Integer>(); // though Integer is-a Number T left and T right of = should be equal
         // Data<Object> dob = new Data<Integer>(); // though Number is-an Object
         // Data<String> dos = new Data<String>(); // String is NaN
         // Data<String> dst = new Data<Integer>();
 
-        // Type parameter on method with bounds -------------------
+        //      On method with bounds
+        m.print1(new ArrayList());
+        m.print1(new ArrayList<>());
         m.print1(new ArrayList<Object>());
         m.print1(new ArrayList<Integer>());
         m.print1(new ArrayList<Peer>());
 
+        m.print2(new ArrayList());
+        m.print2(new ArrayList<>());
         m.print2(new ArrayList<Object>());
         m.print2(new ArrayList<Integer>());
         m.print2(new ArrayList<Peer>());
 
+        m.print3(new ArrayList());
+        m.print3(new ArrayList<>());
         m.print3(new ArrayList<Object>());
         m.print3(new ArrayList<Integer>());
         m.print3(new ArrayList<Peer>());
 
-        // m.printIsPretty1(new ArrayList<Peer>()); // not allowed: must be ArrayList<Fruit>, so:
+        // not allowed: must be ArrayList<Fruit>
+        // m.printIsPretty1(new ArrayList<Peer>());
+
+        // allowed: can be a List of any kind of Fruit
         m.printIsPretty1(new ArrayList<Fruit>());
-        m.printIsPretty2(new ArrayList<Peer>()); // allowed: can be a List of any kind of Fruit
-        m.printIsPretty2(new ArrayList<Fruit>()); // allowed: can be a List of any kind of Fruit
-        m.printIsPretty3(new ArrayList<Peer>()); // allowed: can be a List of any kind of Fruit
-        m.printIsPretty3(new ArrayList<Fruit>()); // allowed: can be a List of any kind of Fruit
+        m.printIsPretty2(new ArrayList<Peer>());
+        m.printIsPretty2(new ArrayList<Fruit>());
+        m.printIsPretty3(new ArrayList<Peer>());
+        m.printIsPretty3(new ArrayList<Fruit>());
 
         // m.addIfPretty(new ArrayList<Peer>(), new Appel()); // not allowed; only one and the same generic type T allowed
         m.addIfPretty(new ArrayList<Appel>(), new Appel()); // allowed: T is the same

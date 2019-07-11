@@ -1,4 +1,4 @@
-package com.example.generics;
+package com.example.elaboration.generics;
 
 public class BakjeGeneric<T> {
     T inhoud;
