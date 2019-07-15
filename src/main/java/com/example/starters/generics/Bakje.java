@@ -1,4 +1,4 @@
-package com.example.starters;
+package com.example.starters.generics;
 
 public class Bakje {
     Object inhoud;
