@@ -1,4 +1,4 @@
-package com.example.app.interfaces;
+package com.example.elaboration.interfaces;
 
 public interface Kneedbaar {
     void kneed();

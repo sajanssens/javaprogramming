@@ -1,4 +1,4 @@
-package com.example.app.interfaces;
+package com.example.elaboration.interfaces;
 
 public class Papier implements Kneedbaar, Brandbaar {
     @Override public void kneed() {
