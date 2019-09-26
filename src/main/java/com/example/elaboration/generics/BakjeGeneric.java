@@ -9,5 +9,7 @@ public class BakjeGeneric<T> {
 
     public T getInhoud() { return inhoud; }
 
-    public void setInhoud(T inhoud) { this.inhoud = inhoud; }
+    public void setInhoud(T inhoud) {
+        this.inhoud = inhoud;
+    }
 }

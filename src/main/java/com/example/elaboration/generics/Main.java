@@ -83,13 +83,34 @@ public class Main {
         // m.schilFruit2(new ArrayList<Peer>()); // not allowed :-)
 
         Bakje b = new Bakje("Hallo!");
+
+
+        BakjeInteger bi = new BakjeInteger();
+        bi.setInhoud(1);
+        Integer inhoud3 = bi.getInhoud();
+        BakjeString bakjeString = new BakjeString();
+        bakjeString.setInhoud("aaa");
+        String inhoud4 = bakjeString.getInhoud();
+
+
+
+
+
         Object inhoud1 = b.getInhoud();
         b.setInhoud(1);
         Object inhoud2 = b.getInhoud();
+        if (inhoud2 instanceof Integer) {
+            Integer i = (Integer) inhoud2;
+            int y = i + 9;
+        }
 
         BakjeGeneric<String> bakjeGeneric = new BakjeGeneric<>("Hallo!");
         String inhoud = bakjeGeneric.getInhoud();
         // bakjeGeneric.setInhoud(1); // not allowed
+
+        BakjeGeneric<Integer> integerBakjeGeneric = new BakjeGeneric<>(1);
+        integerBakjeGeneric.setInhoud(2);
+        Integer inhoud5 = integerBakjeGeneric.getInhoud();
 
         BakjeFruit<Appel> bakjeFruit = new BakjeFruit<>(new Appel());
         Appel appel = bakjeFruit.getInhoud();
