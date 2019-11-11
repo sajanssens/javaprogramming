@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
+
+    @SuppressWarnings("unchecked")
     public static void main(String[] args) {
         Main m = new Main();
 
@@ -84,17 +86,12 @@ public class Main {
 
         Bakje b = new Bakje("Hallo!");
 
-
         BakjeInteger bi = new BakjeInteger();
         bi.setInhoud(1);
         Integer inhoud3 = bi.getInhoud();
         BakjeString bakjeString = new BakjeString();
         bakjeString.setInhoud("aaa");
         String inhoud4 = bakjeString.getInhoud();
-
-
-
-
 
         Object inhoud1 = b.getInhoud();
         b.setInhoud(1);
@@ -172,6 +169,5 @@ public class Main {
             sb.schil();
         }
     }
-
 
 }
