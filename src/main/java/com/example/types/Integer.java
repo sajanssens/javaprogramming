@@ -12,6 +12,7 @@ public class Integer {
         return value;
     }
 
+    // i++
     public int plusplus() {
         int oldValue = value;
 
@@ -19,10 +20,9 @@ public class Integer {
         return oldValue; // return  value
     }
 
+    // ++i
     public int plusplusFirst() {
-        int oldValue = value;
-
         value = value + 1; // side effect
-        return oldValue + 1; // return  value
+        return value; // return  value
     }
 }
