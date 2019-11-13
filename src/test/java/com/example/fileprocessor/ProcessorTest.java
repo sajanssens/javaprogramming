@@ -10,7 +10,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class ProcessorTest {
 
+    private static final String filename = "dataRoot.txt";
     private static final String resource = "dataTestResourcePackage.txt";
+
     private Processor processor = new Processor();
 
     @Test
@@ -21,7 +23,7 @@ public class ProcessorTest {
 
     @Test
     public void testProcessFile() throws IOException {
-        String s = processor.processFile(BufferedReader::readLine, "dataRoot.txt");
+        String s = processor.processFile(BufferedReader::readLine, filename);
 
         assertThat(s).startsWith("Lorem ipsum dolor sit amet");
         assertThat(s).endsWith("Sed a scelerisque mi.");
