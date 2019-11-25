@@ -78,6 +78,7 @@ class DoubleOrBigDecimalTest {
         // Horizontally, the values increase by a factor of 2
         // Anomalies:
         // The number 0 is not possible!
+        // The numbers 0.1, 0.01 are not possible! Not suited for money.
         // Also, the distribution is pretty unfair:
         //  * 7:16 (44%) is between 0..1
         //  * 9:16 (56%) is between 1..480
