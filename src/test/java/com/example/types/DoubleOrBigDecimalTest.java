@@ -75,13 +75,12 @@ class DoubleOrBigDecimalTest {
         // There are only 128 positive possibilities (idem for negative).
         // Any literal not equal to one of these possibilities will be rounded to the nearest possibility.
         // The values in each colomn increase linearly
-        // The steps increase by a factor of 2 for each next column
         // Horizontally, the values increase by a factor of 2
         // Anomalies:
         // The number 0 is not possible!
         // Also, the distribution is pretty unfair:
-        // - 7:16 (44%) is between 0..1
-        // - 9:16 (56%) is between 1..480
+        //  * 7:16 (44%) is between 0..1
+        //  * 9:16 (56%) is between 1..480
     }
 
     private void printHeader() {
