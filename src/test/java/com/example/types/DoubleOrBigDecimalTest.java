@@ -2,6 +2,8 @@ package com.example.types;
 
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+
 import static com.example.types.DoubleOrBigDecimal.*;
 import static java.lang.Integer.toBinaryString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,7 +16,7 @@ class DoubleOrBigDecimalTest {
         System.out.println(1.00d); // Most accurate representation = 1.0E0
         System.out.println(0.41d); // Most accurate representation = 4.09999999999999975575093458247E-1
 
-        double subtractWrong = subtractWrong(1.00, 0.41);// Actually, this is: 1.0 - 0.409999...
+        double subtractWrong = subtractWrong(1.00, 0.41);// Actually, this is: 1.0 - 0.409999 = 0.5900000000000001
         double subtractRight = subtractRight("1.00", "0.41");
 
         System.out.println(subtractWrong);
@@ -24,6 +26,18 @@ class DoubleOrBigDecimalTest {
         assertEquals(subtractRight, 0.59);
     }
 
+    private void printBits(String s, double d) {
+        String bits = String.format("%64s", Long.toBinaryString(Double.doubleToRawLongBits(d))).replace(' ', '0');
+        String sign = bits.substring(0, 1);
+        String expo = bits.substring(1, 13);
+        String mant = bits.substring(13, 64);
+        System.out.println(s + sign + "|" + expo + "|" + mant);
+    }
+
+    private void printBits(double d) {
+        printBits("", d);
+    }
+
     @Test
     void testMultiply() {
         // 0.2: Most accurate representation = 2.00000000000000011102230246252E-1
@@ -31,8 +45,6 @@ class DoubleOrBigDecimalTest {
         System.out.println("float     " + f); // float has less precision
         double d = 0.200000000000000011102230246252d;
         System.out.println("double    " + d); // when doing toString, d is boxed into Double and then toString is called; see javadoc of Double.toString why only x decimals are printed: "There must be at least one digit to represent the fractional part, and beyond that as many, but only as many, more digits as are needed to uniquely distinguish the argument value from adjacent values of type double."
-        Double dBoxed = Double.valueOf(d);
-        System.out.println("Double    " + dBoxed.toString());
 
         System.out.println("0.2 * 3 = " + 0.2 * 3); // Actually this is 3 * 2.00000000000000011102230246252E-1 = ‭0,600000000000000033306690738756
         System.out.println("0.2 * 5 = " + 0.2 * 5); // Actually this is 5 * 2.00000000000000011102230246252E-1 = ‭‭1,00000000000000005551115123126‬
@@ -45,6 +57,22 @@ class DoubleOrBigDecimalTest {
 
         assertNotEquals(multiplyWrong, 10.00d);
         assertEquals(multiplyRight, 10.00d);
+    }
+
+    @Test
+    void printSpecialDoubles() {
+        printBits("Double.NaN:               ", Double.NaN);
+        printBits("Double.POSITIVE_INFINITY: ", Double.POSITIVE_INFINITY);
+        printBits("Double.NEGATIVE_INFINITY: ", Double.NEGATIVE_INFINITY);
+        printBits("Double.MAX_VALUE:         ", Double.MAX_VALUE);
+        printBits("Double.MIN_VALUE:         ", Double.MIN_VALUE);
+        printBits("Positive zero:            ", 0.0d);// Positive zero = all bits 0.
+        printBits("Negative zero:            ", -0.0d);// Negative zero = all bits 0, except sign bit which is 1.
+        printBits("0.1 (binary):             ", 0.1d);
+        System.out.println();
+        System.out.println("0.1 (decimal):            " + new BigDecimal(0.1));
+        System.out.println("Double.MAX_EXPONENT:      " + Double.MAX_EXPONENT);
+        System.out.println("Double.MIN_EXPONENT:      " + Double.MIN_EXPONENT);
     }
 
     @Test
