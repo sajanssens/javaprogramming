@@ -16,7 +16,7 @@ class DoubleOrBigDecimalTest {
         System.out.println(1.00d); // Most accurate representation = 1.0E0
         System.out.println(0.41d); // Most accurate representation = 4.09999999999999975575093458247E-1
 
-        double subtractWrong = subtractWrong(1.00, 0.41);// Actually, this is: 1.0 - 0.409999 = 0.5900000000000001
+        double subtractWrong = subtractWrong(1.00, 0.41);// Actually, this is: 1.0 - 0.409999... = 0.5900000000000001
         double subtractRight = subtractRight("1.00", "0.41");
 
         System.out.println(subtractWrong);
@@ -24,18 +24,6 @@ class DoubleOrBigDecimalTest {
 
         assertNotEquals(subtractWrong, 0.59);
         assertEquals(subtractRight, 0.59);
-    }
-
-    private void printBits(String s, double d) {
-        String bits = String.format("%64s", Long.toBinaryString(Double.doubleToRawLongBits(d))).replace(' ', '0');
-        String sign = bits.substring(0, 1);
-        String expo = bits.substring(1, 13);
-        String mant = bits.substring(13, 64);
-        System.out.println(s + sign + "|" + expo + "|" + mant);
-    }
-
-    private void printBits(double d) {
-        printBits("", d);
     }
 
     @Test
@@ -110,6 +98,14 @@ class DoubleOrBigDecimalTest {
         // Also, the distribution is pretty unfair:
         //  * 7:16 (44%) is between 0..1
         //  * 9:16 (56%) is between 1..480
+    }
+
+    private void printBits(String s, double d) {
+        String bits = String.format("%64s", Long.toBinaryString(Double.doubleToRawLongBits(d))).replace(' ', '0');
+        String sign = bits.substring(0, 1);
+        String expo = bits.substring(1, 13);
+        String mant = bits.substring(13, 64);
+        System.out.println(s + sign + "|" + expo + "|" + mant);
     }
 
     private void printHeader() {
