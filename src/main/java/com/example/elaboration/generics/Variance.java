@@ -55,11 +55,12 @@ public class Variance {
         //list.add("0");
     }
 
-    static void coVariantForObject(List<? /* IMPLICITLY: extends Object*/> list) {
+    static void coVariantForObject(List<?> list) {
         Object o = list.get(0);
 
         // additions not allowed:
         // list.add(1);
         // list.add("1");
+        // list.add(new Object());
     }
 }

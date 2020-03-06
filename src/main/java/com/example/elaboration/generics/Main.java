@@ -77,10 +77,16 @@ public class Main {
         m.printIsPretty3(new ArrayList<Peer>());
         m.printIsPretty3(new ArrayList<Fruit>());
 
-        m.addIfPretty(new ArrayList<Appel>(), new Appel()); // allowed: T is the same
+        m.addIfPretty(new ArrayList<Peer>(), new Peer()); // allowed: T is the same
+        m.addIfPretty(new ArrayList<Fruit>(), new Appel()); // allowed: T is a Fruit
         // m.addIfPretty(new ArrayList<Peer>(), new Appel()); // not allowed; only one and the same generic type T allowed
 
         // m.schilFruit1(new ArrayList<Appel>()); // not allowed: List<Schilbaar> != ArrayList<Fruit> :-(
+
+        List<Schilbaar> schilbaars = new ArrayList<>();
+        schilbaars.add(new Appel());
+        m.schilFruit1(schilbaars);
+
         m.schilFruit2(new ArrayList<Appel>()); // allowed :-)
         // m.schilFruit2(new ArrayList<Peer>()); // not allowed :-)
 
