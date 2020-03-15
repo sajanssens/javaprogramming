@@ -6,7 +6,6 @@ public abstract class Fruit implements Serializable {
     public abstract boolean isPretty();
 }
 
-
 class Appel extends Fruit implements Schilbaar {
     @Override public boolean isPretty() {
         return false;
