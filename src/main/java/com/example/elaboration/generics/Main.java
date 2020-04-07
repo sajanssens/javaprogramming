@@ -1,5 +1,7 @@
 package com.example.elaboration.generics;
 
+import com.example.elaboration.hashcode.Person;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +36,9 @@ public class Main {
         // List<Number> numbers = new ArrayList<Integer>(); // left and right of = should be equal
         // Allowed:
         List<Number> numbers = new ArrayList<Number>(); // left and right of = should be equal; use diamond.
+
+        // and:
+        primitivesAreNotAllowedAsGenericType();
 
         // Type parameters -------------------
         //      On class with bounds
@@ -174,6 +179,31 @@ public class Main {
         for (Schilbaar sb : list) {
             sb.schil();
         }
+    }
+
+    @SuppressWarnings("all")
+    private static void primitivesAreNotAllowedAsGenericType() {
+        Person bram = new Person("Bram", 42);
+
+        // not allowed:
+        // List<int> listOfInt;
+
+        // because this:
+        List<Person> list = new ArrayList<>();
+        list.add(bram);
+        Person a = list.get(0);
+
+        // gets turned into (roughly):
+        List listCompiled = new ArrayList();
+        list.add(bram);
+        Person b = (Person) list.get(0); // list.get returns Object
+
+        // and so this:
+        List listInt = new ArrayList();
+        listInt.add(1);
+
+        // won't compile:
+        // int a = (int) list.get(0); // list.get returns Object, can't be cast to primitive
     }
 
 }
