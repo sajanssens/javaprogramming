@@ -42,6 +42,14 @@ public class Variance {
         // List<Number> numbers = new ArrayList<>();
         // List<Integer> integers = new ArrayList<>();
         // numbers = integers;
+
+        // Same for BakjeGeneric ------------
+        coVariant(new BakjeGeneric<>(0.01f)); // Float
+        coVariant(new BakjeGeneric<>(0.01d)); // Double
+        coVariant(new BakjeGeneric<>(10000)); // Integer
+
+        contraVariant(new BakjeGeneric<Number>()); // Number
+        contraVariant(new BakjeGeneric<Object>()); // Object
     }
 
     // co because here holds: Integer << Number, List<Integer> << List<Number>, i.e. I can pass a List of anything extends Number

@@ -3,6 +3,8 @@ package com.example.elaboration.generics;
 public class BakjeGeneric<T> {
     T inhoud;
 
+    public BakjeGeneric() { }
+
     public BakjeGeneric(T inhoud) {
         this.inhoud = inhoud;
     }
